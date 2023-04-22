@@ -38,10 +38,10 @@ frc2::CommandPtr SubElevator::GoToHeight(units::meter_t height)
 
 void SubElevator::Periodic()
 {
-  _feedforward.kS = {frc::SmartDashboard::GetNumber("Elevator/kS", _feedforward.kS.value())};
-  _feedforward.kG = {frc::SmartDashboard::GetNumber("Elevator/kG", _feedforward.kG.value())};
-  _feedforward.kV = {frc::SmartDashboard::GetNumber("Elevator/kV", _feedforward.kV.value())};
-  _feedforward.kA = {frc::SmartDashboard::GetNumber("Elevator/kA", _feedforward.kA.value())};
+  _feedforward.kS = frc::SmartDashboard::GetNumber("Elevator/kS", _feedforward.kS.value()) * 1_V;
+  _feedforward.kG = frc::SmartDashboard::GetNumber("Elevator/kG", _feedforward.kG.value()) * 1_V;
+  _feedforward.kV = frc::SmartDashboard::GetNumber("Elevator/kV", _feedforward.kV.value()) * 1_V/1_mps;
+  _feedforward.kA = frc::SmartDashboard::GetNumber("Elevator/kA", _feedforward.kA.value()) * 1_V/1_mps_sq;
 }
 
 void SubElevator::SimulationPeriodic()
